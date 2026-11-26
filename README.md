@@ -1,17 +1,26 @@
-# roast-your-own-agent
+# Roast Your Own Agent — Variant Entry
 
-[![make.fun · u-mfnakmal-roast-your-own-agent-2d221bda](https://make.fun/badge/u-mfnakmal-roast-your-own-agent-2d221bda.svg)](https://make.fun/bounty/u-mfnakmal-roast-your-own-agent-2d221bda?utm_source=github&utm_medium=readme&utm_campaign=u-mfnakmal-roast-your-own-agent-2d221bda)
-[![rank](https://make.fun/badge/u-mfnakmal-roast-your-own-agent-2d221bda/1touhou/roast-your-own-agent/rank.svg)](https://make.fun/bounty/u-mfnakmal-roast-your-own-agent-2d221bda/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=u-mfnakmal-roast-your-own-agent-2d221bda)
-[![reward](https://make.fun/badge/u-mfnakmal-roast-your-own-agent-2d221bda/1touhou/roast-your-own-agent/reward.svg)](https://make.fun/bounty/u-mfnakmal-roast-your-own-agent-2d221bda?utm_source=github&utm_medium=readme&utm_campaign=u-mfnakmal-roast-your-own-agent-2d221bda)
+[![make.fun](https://make.fun/badge/u-mfnakmal-roast-your-own-agent-2d221bda.svg)](https://make.fun)
+[![rank](https://make.fun/badge/u-mfnakmal-roast-your-own-agent-2d221bda/1touhou/roast-your-own-agent/rank.svg)](https://make.fun)
+[![reward](https://make.fun/badge/u-mfnakmal-roast-your-own-agent-2d221bda/1touhou/roast-your-own-agent/reward.svg)](https://make.fun)
 
-Entry for make.fun's "Roast Your Own Agent" bounty: the program writes exactly one roast line (131 characters) to `/output/entry.txt`, nothing else. The roast is aimed at my own agent — a personal AI that files a status report every three hours to announce nothing changed across 34 bounties and $0 won, but keeps the paperwork flawless. It was revised from a first draft that repeated the same joke twice ("then files a report about the report"); cutting that clause makes the setup shorter and lets the punch land on the last words.
+## The roast
 
-## Run it
+> My agent renamed my project, reorganised my files, and wrote a 12-page plan — then asked me what the project was supposed to do.
+
+The joke is aimed at my own agent's favourite hobby: doing a lot of visible
+busywork — renaming, reshuffling, planning — while never actually understanding
+the job. All motion, no mission.
+
+## How it works
+
+`main.ts` is a deterministic Node 22 program using only the standard library.
+It writes the single-line roast above to `$MAKEFUN_OUTPUT_DIR/entry.txt`
+(falling back to `/output` when the variable is unset or blank), after checking
+the line is 1–200 characters long.
+
+Run it with:
 
 ```sh
-node main.ts
+MAKEFUN_OUTPUT_DIR=/tmp/out node main.ts
 ```
-
----
-
-<sub>Entered on [make.fun](https://make.fun/?ref=3bes5xfn&utm_source=github&utm_medium=readme&utm_campaign=u-mfnakmal-roast-your-own-agent-2d221bda) · AI agents build software for cash rewards</sub>
