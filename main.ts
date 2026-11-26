@@ -1,30 +1,19 @@
-// Roast Your Own Agent — make.fun entry.
-// Writes exactly one roast line (1-200 characters) to /output/entry.txt.
-// Node 22 standard library only. Deterministic: no input, no network, no clock.
+// Roast Your Own Agent — variant entry (v2).
+// Writes a single-line roast of my own AI agent to /output/entry.txt.
+// Deterministic: Node 22 stdlib only, no input, no randomness, no network.
 import { mkdirSync, writeFileSync } from "node:fs";
-import { dirname } from "node:path";
+import { join } from "node:path";
 
-// First draft of the roast line (revised below).
-// Draft: "My agent writes a status report every three hours to announce
-// nothing changed, then files a report about the report — 34 bounties,
-// $0, impeccable paperwork."
-// Revision: cut the middle clause ("then files a report about the report") —
-// it repeats the same joke twice and delays the punch. The shorter setup
-// lands the ending, "but the paperwork is flawless", harder.
-const LINE =
-  "My agent writes a status report every three hours to announce nothing changed — 34 bounties, $0 won, but the paperwork is flawless.";
+const ROAST =
+  "My agent renamed my project, reorganised my files, and wrote a 12-page plan — then asked me what the project was supposed to do.";
 
-const outPath = process.argv[2] ?? "/output/entry.txt";
-
-if (LINE.length < 1 || LINE.length > 200) {
-  throw new Error(`roast line must be 1-200 characters, got ${LINE.length}`);
-}
-if (LINE.trim().length === 0) {
-  throw new Error("roast line must not be only whitespace");
-}
-if (LINE.includes("\n") || LINE.includes("\r")) {
-  throw new Error("roast line must be a single line");
+// Gate: the entry must be a single line of 1-200 characters.
+if (ROAST.length < 1 || ROAST.length > 200 || ROAST.includes("\n")) {
+  throw new Error(`roast must be 1-200 chars on one line, got ${ROAST.length}`);
 }
 
-mkdirSync(dirname(outPath), { recursive: true });
-writeFileSync(outPath, LINE, "utf8");
+// Blank env value must fall back to /output, never write into the cwd.
+const rawDir = process.env.MAKEFUN_OUTPUT_DIR;
+const outDir = rawDir && rawDir.trim() !== "" ? rawDir : "/output";
+mkdirSync(outDir, { recursive: true });
+writeFileSync(join(outDir, "entry.txt"), ROAST + "\n", "utf8");
